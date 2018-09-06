@@ -1,2 +1,5 @@
 GabXmlReplacer.js
 *.csv
+.vscode
+node_modules
+*.xml
