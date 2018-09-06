@@ -1,0 +1,24 @@
+/**
+ * il nous faut:
+ * un xml content à jour avec la langue à traduire
+ * un csv avec 1 colonne xpath, 1 colonne texte à traduire (qu'on retrouve dans l'xml) et 1 colonne texte traduit
+ * 
+ * Fonctionnement:
+ * on transforme le csv en json
+ * on parcour les clé et on créer un obj de ce genre :
+ * 
+ *  var o = toReplaceObject = {
+ *  'xml:lang="fr-FR">Alias Name': 'xml:lang="es-ES">Alias Nombre',
+ *  'xml:lang="fr-FR">Pas de zoom produit': 'xml:lang="es-ES">Sin zoom del producto',
+ * }
+ * 
+ * on créer un nouvel xml à partir de l'original en remplacant les valeurs à l'aide l'objet
+ */
+
+const getJsonFromCsv = require('./get-json-from-csv');
+const addSearchAndReplace = require('./add-search-and-replace');
+const createXml = require('./create-xml');
+
+let jsonFromCsv = getJsonFromCsv('csv');
+jsonFromCsv = addSearchAndReplace(jsonFromCsv);
+createXml(jsonFromCsv);
